@@ -12,7 +12,7 @@ class Service:
 
     # 로그인
     def sign_in(self, username: str, password: str):
-        account = self.data_access.find_account_by_username(username)
+        account = self.data_access.get_account_by_username(username)
         print(type(account))
         if account is None:
             raise AccountNotFound()

@@ -19,14 +19,11 @@ class MainService:
     def ticket_logic(self):
         print('프로그램을 시작합니다.')
         # 테스트 항목
-        restaurant = self.restaurant_service.get_restaurants()
+        restaurants = self.restaurant_service.get_restaurants()
+        print(restaurants)
+
+        restaurant = self.restaurant_service.get_restaurant_by_name('A식당')
         print(restaurant)
-        # time = TimeUtils.get_current_time()
-        # print(time)
-        # meal_time_settings = TimeUtils.get_current_meal_time_settings()
-        # print(meal_time_settings)
-        # print(meal_time_settings['BREAKFAST_TIME_START'])
-        # TimeUtils.get_current_meal_time_settings()
 
         # 설정 시간 초기화
         TimeUtils.get_current_meal_time_settings()
@@ -42,7 +39,7 @@ class MainService:
             if select == Select.SIGN_IN.value:
                 account = self.sign_in()
 
-                # 예외 발생으로 계정이 없다면 다시 처음으로 돌아가도록 continue
+                # 예외 발생 시 계정이 없다면 다시 처음으로 돌아 가도록 continue 실행
                 if account is None:
                     continue
 
@@ -51,16 +48,19 @@ class MainService:
                     select_manager_mode = int(input(MANAGER_MODE_MESSAGE))
 
                     if select_manager_mode == SelectManagerMode.MEAL_TIME_SETTING.value:
-                        # 현재 세팅된 시간을 출력해주고 바꿀시간 등을 입력받도록 함
+                        # 현재 세팅된 시간을 출력 해주고 변경 시간을 입력 받도록 함
                         self.set_meal_time()
 
                     elif select_manager_mode == SelectManagerMode.ADD_RESTAURANT.value:
                         print(DEVELOPMENT_NOT_COMPLETED_MESSAGE)
 
                 elif account.role == Roles.NORMAL.value:
-                    select_normal = int(input(NORMAL_MODE_MESSAGE))
+                    print('등록된 식당 리스트는 다음과 같습니다.')
+                    restaurants = self.restaurant_service.get_restaurants()
+                    for num, restaurant in enumerate(restaurants, start=1):
+                        print(f'{num}. {restaurant["name"]}')
+                    selected_restaurant = int(input(NORMAL_MODE_MESSAGE))
 
-                    print(select_normal)
 
             elif select == Select.SIGN_UP.value:
                 self.sign_up()

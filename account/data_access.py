@@ -19,7 +19,7 @@ class DataAccess:
         with open(self._data_path, 'w') as f:
             json.dump({'account': accounts}, f)
 
-    def find_account_by_username(self, username):
+    def get_account_by_username(self, username):
         accounts = self.get_accounts()
         for dict_account in accounts:
             if dict_account['username'] == username:
