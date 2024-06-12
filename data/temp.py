@@ -1,0 +1,133 @@
+# {
+#   "restaurant": [
+#     {
+#       "restaurant_id": "1",
+#       "name": "A식당",
+#       "show_menu": "True",
+#       "menu": {
+#         "lunch": [
+#           {
+#             "food_id": "1",
+#             "food_name": "A제육덮밥",
+#             "food_price": "8000"
+#           },
+#           {
+#             "food_id": "2",
+#             "food_name": "A김치찌개",
+#             "food_price": "9000"
+#           },
+#           {
+#             "food_id": "3",
+#             "food_name": "A돈까스",
+#             "food_price": "10000"
+#           }
+#         ],
+#         "breakfast": [
+#           {
+#             "food_id": "1",
+#             "food_name": "A토스트",
+#             "food_price": "3000"
+#           }
+#         ],
+#         "dinner": [
+#           {
+#             "food_id": "1",
+#             "food_name": "A볶음밥",
+#             "food_price": "7000"
+#           },
+#           {
+#             "food_id": "2",
+#             "food_name": "A삼겹살",
+#             "food_price": "10000"
+#           }
+#         ]
+#       }
+#     },
+#     {
+#       "restaurant_id": "2",
+#       "name": "B식당",
+#       "show_menu": "False",
+#       "menu": {
+#         "lunch": [
+#           {
+#             "food_id": "1",
+#             "food_name": "B제육덮밥",
+#             "food_price": "8000"
+#           },
+#           {
+#             "food_id": "2",
+#             "food_name": "B김치찌개",
+#             "food_price": "9000"
+#           },
+#           {
+#             "food_id": "3",
+#             "food_name": "B돈까스",
+#             "food_price": "10000"
+#           }
+#         ],
+#         "breakfast": [
+#           {
+#             "food_id": "1",
+#             "food_name": "B토스트",
+#             "food_price": "3000"
+#           }
+#         ],
+#         "dinner": [
+#           {
+#             "food_id": "1",
+#             "food_name": "B볶음밥",
+#             "food_price": "7000"
+#           },
+#           {
+#             "food_id": "2",
+#             "food_name": "B삼겹살",
+#             "food_price": "10000"
+#           }
+#         ]
+#       }
+#     },
+#     {
+#       "restaurant_id": "3",
+#       "name": "C식당",
+#       "show_menu": "True",
+#       "menu": {
+#         "lunch": [
+#           {
+#             "food_id": "1",
+#             "food_name": "C제육덮밥",
+#             "food_price": "8000"
+#           },
+#           {
+#             "food_id": "2",
+#             "food_name": "C김치찌개",
+#             "food_price": "9000"
+#           },
+#           {
+#             "food_id": "3",
+#             "food_name": "C돈까스",
+#             "food_price": "10000"
+#           }
+#         ],
+#         "breakfast": [
+#           {
+#             "food_id": "1",
+#             "food_name": "C토스트",
+#             "food_price": "3000"
+#           }
+#         ],
+#         "dinner": [
+#           {
+#             "food_id": "1",
+#             "food_name": "C볶음밥",
+#             "food_price": "7000"
+#           },
+#           {
+#             "food_id": "2",
+#             "food_name": "C삼겹살",
+#             "food_price": "10000"
+#           }
+#         ]
+#       }
+#     }
+#   ]
+# }

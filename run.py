@@ -1,11 +1,9 @@
-from mainService import MainService
-from account.data_access import DataAccess
+from main_service.main_service import MainService
 
 
 def run():
-    account_data_access = DataAccess('./data/account.json')
-
-    MainService(account_data_access)
+    main = MainService()
+    main.ticket_logic()
 
 
 if __name__ == '__main__':

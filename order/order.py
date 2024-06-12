@@ -5,20 +5,8 @@ class Order:
     """
     주문 클래스
     """
-    def __init__(self, ordered_time):
-        self._id = uuid.uuid4()
-        self._ordered_time = ordered_time
-
-    # id -> getter만 생성
-    @property
-    def id(self):
-        return self.id
-
-    @property
-    def ordered_time(self):
-        return self._ordered_time
-
-    @ordered_time.setter
-    def ordered_time(self, value):
-        self._ordered_time = value
-
+    def __init__(self, order_id, ordered_time, restaurant_id, menu_id):
+        self.order_id = order_id
+        self.ordered_time = ordered_time
+        self.restaurant_id = restaurant_id
+        self.menu_id = menu_id
