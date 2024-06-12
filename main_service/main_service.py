@@ -21,11 +21,15 @@ class MainService:
         # 테스트 항목
         restaurant = self.restaurant_service.get_restaurants()
         print(restaurant)
-        time = TimeUtils.get_current_time()
-        print(time)
-        meal_time_settings = TimeUtils.get_current_meal_time_settings()
-        print(meal_time_settings)
-        print(meal_time_settings['BREAKFAST_TIME_START'])
+        # time = TimeUtils.get_current_time()
+        # print(time)
+        # meal_time_settings = TimeUtils.get_current_meal_time_settings()
+        # print(meal_time_settings)
+        # print(meal_time_settings['BREAKFAST_TIME_START'])
+        # TimeUtils.get_current_meal_time_settings()
+
+        # 설정 시간 초기화
+        TimeUtils.get_current_meal_time_settings()
 
         # 선택 변수 선언 및 초기화
         select = -1
@@ -48,18 +52,35 @@ class MainService:
 
                     if select_manager_mode == SelectManagerMode.MEAL_TIME_SETTING.value:
                         # 현재 세팅된 시간을 출력해주고 바꿀시간 등을 입력받도록 함
-                        pass
+                        self.set_meal_time()
+
                     elif select_manager_mode == SelectManagerMode.ADD_RESTAURANT.value:
                         print(DEVELOPMENT_NOT_COMPLETED_MESSAGE)
 
                 elif account.role == Roles.NORMAL.value:
                     select_normal = int(input(NORMAL_MODE_MESSAGE))
+
                     print(select_normal)
 
             elif select == Select.SIGN_UP.value:
                 self.sign_up()
 
         print('프로그램을 종료합니다.')
+
+    def set_meal_time(self):
+        TimeUtils.print_current_meal_time_settings()
+        print('시간 형식은 시간:분 형태로 입력해 주세요. ex> 17:20')
+        breakfast_time_start = input("BREAKFAST_TIME_START: ")
+        breakfast_time_end = input("BREAKFAST_TIME_END: ")
+        lunch_time_start = input("LUNCH_TIME_START: ")
+        lunch_time_end = input("LUNCH_TIME_END: ")
+        dinner_time_start = input("DINNER_TIME_START: ")
+        dinner_time_end = input("DINNER_TIME_END: ")
+        TimeUtils.set_meal_time_settings(breakfast_time_start, breakfast_time_end, lunch_time_start, lunch_time_end,
+                                         dinner_time_start, dinner_time_end)
+        TimeUtils.get_current_meal_time_settings()
+        TimeUtils.print_current_meal_time_settings()
+        print('시간설정이 완료되어 재시작합니다.')
 
     def sign_up(self):
         username = input('아이디: ')
