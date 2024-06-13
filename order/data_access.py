@@ -6,7 +6,7 @@ class DataAccess:
         self._data_path = data_path
 
     def get_orders(self):
-        with open(self._data_path, 'r') as f:
+        with open(self._data_path, 'r', encoding='utf-8') as f:
             orders = json.load(f).get('order')
             return orders
 

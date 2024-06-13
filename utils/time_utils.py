@@ -51,6 +51,8 @@ class TimeUtils:
             return 'lunch'
         elif dinner_time_start <= current_time <= dinner_time_end:
             return 'dinner'
+        else:
+            return 'breaktime'
 
     @staticmethod
     def set_meal_time_settings(
@@ -63,4 +65,4 @@ class TimeUtils:
                                   'BREAKFAST_TIME_END': breakfast_time_end, 'LUNCH_TIME_START': lunch_time_start,
                                   'LUNCH_TIME_END': lunch_time_end, 'DINNER_TIME_START': dinner_time_start,
                                   'DINNER_TIME_END': dinner_time_end}
-            json.dump(meal_time_settings, f)
+            json.dump(meal_time_settings, f, indent=4)

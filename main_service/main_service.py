@@ -1,7 +1,7 @@
 from account.account import Account
 from account.constants import Roles
 from account.data_access import DataAccess as AccountDataAccess
-from account.exceptions import AccountNotFound, PasswordNotMatched
+from account.exceptions import AccountNotFound, PasswordNotMatched, AccountExisted
 from account.service import Service as AccountService
 from main_service.constants import INITIAL_MESSAGE, Select, MANAGER_MODE_MESSAGE, NORMAL_MODE_MESSAGE, \
     SelectManagerMode, DEVELOPMENT_NOT_COMPLETED_MESSAGE
@@ -44,15 +44,20 @@ class MainService:
                     self.manager_mode()
 
                 elif account.role == Roles.NORMAL.value:
-                    self.normal_mode(account.account_id)
+                    meal_time = TimeUtils.get_meal_time_from_settings()
+
+                    # 운영시간이 아니라면 break
+                    if meal_time == 'breaktime':
+                        print('현재는 운영시간이 아닙니다. 관리자에게 문의해주세요.')
+                        break
+
+                    self.normal_mode(account.account_id, meal_time)
 
             # 회원 가입
             elif select == Select.SIGN_UP.value:
                 self.sign_up()
 
-        print('프로그램을 종료합니다.')
-
-    def normal_mode(self, account_id):
+    def normal_mode(self, account_id, meal_time):
         print('등록된 식당 리스트는 다음과 같습니다.')
         restaurants = self.restaurant_service.get_restaurants()
         for restaurant in restaurants:
@@ -60,7 +65,7 @@ class MainService:
         selected_restaurant_id = int(input(NORMAL_MODE_MESSAGE))
         restaurant = self.restaurant_service.get_restaurant_by_id(selected_restaurant_id)
         foods = self.restaurant_service.get_foods_by_id_and_time_settings(selected_restaurant_id,
-                                                                          TimeUtils.get_meal_time_from_settings())
+                                                                          meal_time)
         if restaurant.show_menu == MenuOption.SHOW.value:
             print('메뉴가 제공되는 가게입니다. 메뉴를 선택해 주세요.')
             # 메뉴 출력 및 선택
@@ -72,13 +77,13 @@ class MainService:
             selected_food = foods[selected_food_id]
 
             # 주문
-            order_response = input(f'금액은 {selected_food.get("food_price")}입니다. 주문 하시겠습니까? 주문 하시려면 1번, 아니면 0번을 눌러주세요.')
+            order_response = int(input(f'금액은 {selected_food.get("food_price")}입니다. 주문 하시겠습니까? 주문 하시려면 1번, 아니면 0번을 눌러주세요.'))
             if order_response:
                 self.order_service.add_order(selected_food.get('food_price'), selected_food.get('food_name'),
                                              account_id, selected_restaurant_id, selected_food_id)
 
-                # 결제완료 + 초기화면
-                print('주문이 완료되었습니다. 감사합니다.')
+                # 결제완료 -> 초기화면
+                print(f'결제 금액은 {selected_food.get("food_price")} 입니다. 주문이 완료 되었습니다. 감사합니다.')
 
         else:
             fixed_food = foods[0]
@@ -86,13 +91,13 @@ class MainService:
             print(f'메뉴가 제공되지 않는 가게입니다. 오늘의 메뉴는 {fixed_food.get("food_name")}입니다!')
 
             # 주문
-            order_response = input(f'금액은 {fixed_food.get("food_price")}입니다. 주문 하시겠습니까? 주문 하시려면 1번, 아니면 0번을 눌러주세요.')
+            order_response = int(input(f'금액은 {fixed_food.get("food_price")}입니다. 주문 하시겠습니까? 주문 하시려면 1번, 아니면 0번을 눌러주세요.'))
             if order_response:
                 self.order_service.add_order(fixed_food.get('food_price'), fixed_food.get('food_name'), account_id,
                                              selected_restaurant_id, fixed_food_id)
 
-                # 결제완료 + 초기화면
-                print('주문이 완료되었습니다. 감사합니다.')
+                # 결제완료 -> 초기화면
+                print(f'결제 금액은 {fixed_food.get("food_price")} 입니다. 주문이 완료되었습니다. 감사합니다.')
 
     def manager_mode(self):
         select_manager_mode = int(input(MANAGER_MODE_MESSAGE))
@@ -119,11 +124,14 @@ class MainService:
         print('시간설정이 완료되어 재시작합니다.')
 
     def sign_up(self):
-        username = input('아이디: ')
-        password = input('비밀번호: ')
+        try:
+            username = input('아이디: ')
+            password = input('비밀번호: ')
 
-        # 기본적으로 일반회원 가입만 가능한 상태.
-        self.account_service.sign_up(username, password, Roles.NORMAL)
+            # 기본적으로 일반회원 가입만 가능한 상태.
+            self.account_service.sign_up(username, password, Roles.NORMAL)
+        except AccountExisted as e1:
+            print(e1)
 
     def sign_in(self) -> Account:
         try:
