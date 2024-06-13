@@ -19,29 +19,11 @@
             "food_id": 1
         },
         {
-            "order_id": 2,
-            "ordered_time": "2024-06-13 14:45:37",
-            "ordered_price": "10000",
-            "food_name": "C돈까스",
+            "order_id": 3,
+            "ordered_time": "2024-06-13 20:11:32",
+            "ordered_price": "7000",
+            "food_name": "B볶음밥",
             "account_id": 1,
-            "restaurant_id": 3,
-            "food_id": 2
-        },
-        {
-            "order_id": 2,
-            "ordered_time": "2024-06-13 14:46:13",
-            "ordered_price": "8000",
-            "food_name": "C제육덮밥",
-            "account_id": 1,
-            "restaurant_id": 3,
-            "food_id": 0
-        },
-        {
-            "order_id": 2,
-            "ordered_time": "2024-06-13 14:47:01",
-            "ordered_price": "8000",
-            "food_name": "B제육덮밥",
-            "account_id": 3,
             "restaurant_id": 2,
             "food_id": 1
         }

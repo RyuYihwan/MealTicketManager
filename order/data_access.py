@@ -3,10 +3,10 @@ import json
 
 class OrderDataAccess:
     def __init__(self, data_path):
-        self._data_path = data_path
+        self.__data_path = data_path
 
     def get_orders(self):
-        with open(self._data_path, 'r', encoding='utf-8') as f:
+        with open(self.__data_path, 'r', encoding='utf-8') as f:
             orders = json.load(f).get('order')
             return orders
 
@@ -16,5 +16,5 @@ class OrderDataAccess:
         orders = self.get_orders()
         json_order = order.__dict__
         orders.append(json_order)
-        with open(self._data_path, 'w', encoding='utf-8') as f:
+        with open(self.__data_path, 'w', encoding='utf-8') as f:
             json.dump({'order': orders}, f, ensure_ascii=False, indent=4)

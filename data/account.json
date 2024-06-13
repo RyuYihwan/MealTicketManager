@@ -23,6 +23,18 @@
             "username": "user3",
             "password": "1234",
             "role": 1
+        },
+        {
+            "account_id": 5,
+            "username": "user4",
+            "password": "1234",
+            "role": 1
+        },
+        {
+            "account_id": 6,
+            "username": "sisii",
+            "password": "222",
+            "role": 1
         }
     ]
 }

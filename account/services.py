@@ -6,11 +6,11 @@ from account.exceptions import AccountNotFound, PasswordNotMatched, AccountExist
 
 class AccountService:
     def __init__(self, data_access: AccountDataAccess):
-        self.data_access = data_access
+        self.__data_access = data_access
 
     # 로그인
     def sign_in(self, username: str, password: str):
-        account = self.data_access.get_account_by_username(username)
+        account = self.__data_access.get_account_by_username(username)
         if account is None:
             raise AccountNotFound()
 
@@ -22,7 +22,7 @@ class AccountService:
 
     # 회원 가입
     def sign_up(self, username: str, password: str, role: Roles):
-        accounts = self.data_access.get_accounts()
+        accounts = self.__data_access.get_accounts()
         for account in accounts:
             if account.get('username') == username:
                 raise AccountExisted()
@@ -33,9 +33,9 @@ class AccountService:
             account_id = accounts[-1].get('account_id') + 1
 
         new_account = Account(account_id, username, password, role.value)
-        self.data_access.add_account(new_account)
+        self.__data_access.add_account(new_account)
         print(f'회원가입이 완료되었습니다. 로그인 후 이용해주세요. - ID: {username}')
 
     # 조회
     def get_accounts(self):
-        return self.data_access.get_accounts()
+        return self.__data_access.get_accounts()

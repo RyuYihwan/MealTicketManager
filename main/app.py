@@ -15,9 +15,9 @@ from utils.time_utils import TimeUtils
 
 class MainService:
     def __init__(self):
-        self.account_service = AccountService(AccountDataAccess('./data/account.json'))
-        self.restaurant_service = RestaurantService(RestaurantDataAccess('./data/restaurant.json'))
-        self.order_service = OrderService(OrderDataAccess('./data/order.json'))
+        self.__account_service = AccountService(AccountDataAccess('./data/account.json'))
+        self.__restaurant_service = RestaurantService(RestaurantDataAccess('./data/restaurant.json'))
+        self.__order_service = OrderService(OrderDataAccess('./data/order.json'))
 
     def ticket_logic(self):
         # 설정 시간 초기화
@@ -33,7 +33,7 @@ class MainService:
 
             # 로그인
             if select == Select.SIGN_IN.value:
-                account = self.sign_in()
+                account = self.__sign_in()
 
                 # 예외 발생 시 계정이 없다면 다시 처음으로 돌아 가도록 continue 실행
                 if account is None:
@@ -41,7 +41,7 @@ class MainService:
 
                 # 로그인 된 계정을 확인 후 역할에 따라 다른 모드 실행
                 if account.role == Roles.MANAGER.value:
-                    self.manager_mode()
+                    self.__manager_mode()
 
                 elif account.role == Roles.NORMAL.value:
                     meal_time = TimeUtils.get_meal_time_from_settings()
@@ -51,20 +51,20 @@ class MainService:
                         print('현재는 운영시간이 아닙니다. 관리자에게 문의해주세요.')
                         break
 
-                    self.normal_mode(account.account_id, meal_time)
+                    self.__normal_mode(account.account_id, meal_time)
 
             # 회원 가입
             elif select == Select.SIGN_UP.value:
-                self.sign_up()
+                self.__sign_up()
 
-    def normal_mode(self, account_id, meal_time):
+    def __normal_mode(self, account_id, meal_time):
         print('등록된 식당 리스트는 다음과 같습니다.')
-        restaurants = self.restaurant_service.get_restaurants()
+        restaurants = self.__restaurant_service.get_restaurants()
         for restaurant in restaurants:
             print(f'{restaurant.get("restaurant_id")}. {restaurant.get("name")}')
         selected_restaurant_id = int(input(NORMAL_MODE_MESSAGE))
-        restaurant = self.restaurant_service.get_restaurant_by_id(selected_restaurant_id)
-        foods = self.restaurant_service.get_foods_by_id_and_time_settings(selected_restaurant_id,
+        restaurant = self.__restaurant_service.get_restaurant_by_id(selected_restaurant_id)
+        foods = self.__restaurant_service.get_foods_by_id_and_time_settings(selected_restaurant_id,
                                                                           meal_time)
         if restaurant.show_menu == MenuOption.SHOW.value:
             print('메뉴가 제공되는 가게입니다. 메뉴를 선택해 주세요.')
@@ -79,7 +79,7 @@ class MainService:
             # 주문
             order_response = int(input(f'금액은 {selected_food.get("food_price")}입니다. 주문 하시겠습니까? 주문 하시려면 1번, 아니면 0번을 눌러주세요.'))
             if order_response:
-                self.order_service.add_order(selected_food.get('food_price'), selected_food.get('food_name'),
+                self.__order_service.add_order(selected_food.get('food_price'), selected_food.get('food_name'),
                                              account_id, selected_restaurant_id, selected_food_id)
 
                 # 결제완료 -> 초기화면
@@ -93,22 +93,22 @@ class MainService:
             # 주문
             order_response = int(input(f'금액은 {fixed_food.get("food_price")}입니다. 주문 하시겠습니까? 주문 하시려면 1번, 아니면 0번을 눌러주세요.'))
             if order_response:
-                self.order_service.add_order(fixed_food.get('food_price'), fixed_food.get('food_name'), account_id,
+                self.__order_service.add_order(fixed_food.get('food_price'), fixed_food.get('food_name'), account_id,
                                              selected_restaurant_id, fixed_food_id)
 
                 # 결제완료 -> 초기화면
                 print(f'결제 금액은 {fixed_food.get("food_price")} 입니다. 주문이 완료되었습니다. 감사합니다.')
 
-    def manager_mode(self):
+    def __manager_mode(self):
         select_manager_mode = int(input(MANAGER_MODE_MESSAGE))
         if select_manager_mode == SelectManagerMode.MEAL_TIME_SETTING.value:
             # 현재 세팅된 시간을 출력 해주고 변경 시간을 입력 받도록 함 -> 재접속 필요
-            self.set_meal_time_by_manager()
+            self.__set_meal_time_by_manager()
 
         elif select_manager_mode == SelectManagerMode.ADD_RESTAURANT.value:
             print(DEVELOPMENT_NOT_COMPLETED_MESSAGE)
 
-    def set_meal_time_by_manager(self):
+    def __set_meal_time_by_manager(self):
         TimeUtils.print_current_meal_time_settings()
         print('시간 형식은 시간:분 형태로 입력해 주세요. ex> 17:20')
         breakfast_time_start = input("BREAKFAST_TIME_START: ")
@@ -123,21 +123,21 @@ class MainService:
         TimeUtils.print_current_meal_time_settings()
         print('시간설정이 완료되어 재시작합니다.')
 
-    def sign_up(self):
+    def __sign_up(self):
         try:
             username = input('아이디: ')
             password = input('비밀번호: ')
 
             # 기본적으로 일반회원 가입만 가능한 상태.
-            self.account_service.sign_up(username, password, Roles.NORMAL)
+            self.__account_service.sign_up(username, password, Roles.NORMAL)
         except AccountExisted as e1:
             print(e1)
 
-    def sign_in(self) -> Account:
+    def __sign_in(self) -> Account:
         try:
             username = input('아이디: ')
             password = input('비밀번호: ')
-            account = self.account_service.sign_in(username, password)
+            account = self.__account_service.sign_in(username, password)
 
             return account
 
