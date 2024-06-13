@@ -1,8 +1,8 @@
-from restaurant.data_access import DataAccess
+from restaurant.data_access import RestaurantDataAccess
 
 
-class Service:
-    def __init__(self, data_access: DataAccess):
+class RestaurantService:
+    def __init__(self, data_access: RestaurantDataAccess):
         self.data_access = data_access
 
     # 조회

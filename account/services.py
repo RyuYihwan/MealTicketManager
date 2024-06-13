@@ -1,11 +1,11 @@
-from account.account import Account
+from account.models import Account
 from account.constants import Roles
-from account.data_access import DataAccess
+from account.data_access import AccountDataAccess
 from account.exceptions import AccountNotFound, PasswordNotMatched, AccountExisted
 
 
-class Service:
-    def __init__(self, data_access: DataAccess):
+class AccountService:
+    def __init__(self, data_access: AccountDataAccess):
         self.data_access = data_access
 
     # 로그인
@@ -24,7 +24,6 @@ class Service:
     def sign_up(self, username: str, password: str, role: Roles):
         accounts = self.data_access.get_accounts()
         for account in accounts:
-            print(account.get('username'))
             if account.get('username') == username:
                 raise AccountExisted()
 

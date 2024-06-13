@@ -1,7 +1,7 @@
 import json
 
 
-class DataAccess:
+class OrderDataAccess:
     def __init__(self, data_path):
         self._data_path = data_path
 

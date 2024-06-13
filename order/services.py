@@ -1,11 +1,11 @@
 from datetime import datetime
 
-from order.data_access import DataAccess
-from order.order import Order
+from order.data_access import OrderDataAccess
+from order.models import Order
 
 
-class Service:
-    def __init__(self, data_access: DataAccess):
+class OrderService:
+    def __init__(self, data_access: OrderDataAccess):
         self.data_access = data_access
 
     # 주문

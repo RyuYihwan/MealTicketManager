@@ -1,9 +1,9 @@
 import json
 
-from restaurant.restaurant import Restaurant
+from restaurant.models import Restaurant
 
 
-class DataAccess:
+class RestaurantDataAccess:
     def __init__(self, data_path):
         self._data_path = data_path
 
@@ -18,7 +18,6 @@ class DataAccess:
             for dict_restaurant in restaurants:
                 if dict_restaurant['restaurant_id'] == restaurant_id:
                     restaurant = Restaurant(**dict_restaurant)
-                    print(restaurant.__dict__)
                     return restaurant
 
     def get_foods_by_id_and_time_settings(self, restaurant_id, meal_time):

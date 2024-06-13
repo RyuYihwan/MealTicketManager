@@ -1,15 +1,15 @@
-from account.account import Account
+from account.models import Account
 from account.constants import Roles
-from account.data_access import DataAccess as AccountDataAccess
+from account.data_access import AccountDataAccess
 from account.exceptions import AccountNotFound, PasswordNotMatched, AccountExisted
-from account.service import Service as AccountService
+from account.services import AccountService
 from main_service.constants import INITIAL_MESSAGE, Select, MANAGER_MODE_MESSAGE, NORMAL_MODE_MESSAGE, \
     SelectManagerMode, DEVELOPMENT_NOT_COMPLETED_MESSAGE
-from order.data_access import DataAccess as OrderDataAccess
-from order.service import Service as OrderService
+from order.data_access import OrderDataAccess
+from order.services import OrderService
 from restaurant.constants import MenuOption
-from restaurant.data_access import DataAccess as RestaurantDataAccess
-from restaurant.service import Service as RestaurantService
+from restaurant.data_access import RestaurantDataAccess
+from restaurant.services import RestaurantService
 from utils.time_utils import TimeUtils
 
 

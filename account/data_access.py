@@ -1,9 +1,9 @@
 import json
 
-from account.account import Account
+from account.models import Account
 
 
-class DataAccess:
+class AccountDataAccess:
     def __init__(self, data_path):
         self._data_path = data_path
 
@@ -26,6 +26,5 @@ class DataAccess:
         for dict_account in accounts:
             if dict_account['username'] == username:
                 account = Account(**dict_account)
-                print(account.__dict__)
                 return account
 
