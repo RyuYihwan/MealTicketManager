@@ -1,18 +1,6 @@
 {
   "account": [
     {
-      "account_id": 123,
-      "username": "alice",
-      "password": "password1",
-      "role": 1
-    },
-    {
-      "account_id": "8788679eafa344fea2d3994598deae5d",
-      "username": "abc",
-      "password": "1234",
-      "role": 0
-    },
-    {
       "account_id": "d3660b59e48a47789f8e8f1e6f36faf7",
       "username": "abc",
       "password": "1234",

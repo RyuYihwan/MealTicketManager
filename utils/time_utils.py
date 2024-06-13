@@ -35,6 +35,23 @@ class TimeUtils:
         print(f'DINNER_TIME_START: {cls.DINNER_TIME_START}')
         print(f'DINNER_TIME_END: {cls.DINNER_TIME_END}')
 
+    @classmethod
+    def get_meal_time_from_settings(cls):
+        current_time = datetime.now().time()
+        breakfast_time_start = datetime.strptime(cls.BREAKFAST_TIME_START, "%H:%M").time()
+        breakfast_time_end = datetime.strptime(cls.BREAKFAST_TIME_END, "%H:%M").time()
+        lunch_time_start = datetime.strptime(cls.LUNCH_TIME_START, "%H:%M").time()
+        lunch_time_end = datetime.strptime(cls.LUNCH_TIME_END, "%H:%M").time()
+        dinner_time_start = datetime.strptime(cls.DINNER_TIME_START, "%H:%M").time()
+        dinner_time_end = datetime.strptime(cls.DINNER_TIME_END, "%H:%M").time()
+
+        if breakfast_time_start <= current_time <= breakfast_time_end:
+            return 'breakfast'
+        elif lunch_time_start <= current_time <= lunch_time_end:
+            return 'lunch'
+        elif dinner_time_start <= current_time <= dinner_time_end:
+            return 'dinner'
+
     @staticmethod
     def set_meal_time_settings(
             breakfast_time_start, breakfast_time_end,
