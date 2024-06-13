@@ -1,4 +1,4 @@
-from main_service.app import MainService
+from main.app import MainService
 
 
 def run():

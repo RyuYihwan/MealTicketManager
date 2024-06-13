@@ -3,7 +3,7 @@ from account.constants import Roles
 from account.data_access import AccountDataAccess
 from account.exceptions import AccountNotFound, PasswordNotMatched, AccountExisted
 from account.services import AccountService
-from main_service.constants import INITIAL_MESSAGE, Select, MANAGER_MODE_MESSAGE, NORMAL_MODE_MESSAGE, \
+from main.constants import INITIAL_MESSAGE, Select, MANAGER_MODE_MESSAGE, NORMAL_MODE_MESSAGE, \
     SelectManagerMode, DEVELOPMENT_NOT_COMPLETED_MESSAGE
 from order.data_access import OrderDataAccess
 from order.services import OrderService
