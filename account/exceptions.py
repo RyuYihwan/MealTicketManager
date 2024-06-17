@@ -5,7 +5,7 @@ class AccountNotFound(Exception):
 
 class PasswordNotMatched(Exception):
     def __str__(self):
-        return "다시 로그인 해주세요."
+        return "비밀 번호가 틀렸습니다. 다시 로그인 해주세요."
 
 
 class AccountExisted(Exception):

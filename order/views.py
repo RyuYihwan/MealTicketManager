@@ -1,10 +1,9 @@
 from datetime import datetime
 
-from order.data_access import OrderDataAccess
-from order.models import Order
+from order.models import Order, OrderDataAccess
 
 
-class OrderService:
+class OrderView:
     def __init__(self, data_access: OrderDataAccess):
         self.__data_access = data_access
 

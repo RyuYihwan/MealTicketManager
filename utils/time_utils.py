@@ -16,7 +16,7 @@ class TimeUtils:
 
     @classmethod
     def get_current_meal_time_settings(cls):
-        with open('./data/meal_time.json', 'r') as f:
+        with open('./db/meal_time.json', 'r') as f:
             meal_time_settings = json.load(f)
             cls.BREAKFAST_TIME_START = meal_time_settings['BREAKFAST_TIME_START']
             cls.BREAKFAST_TIME_END = meal_time_settings['BREAKFAST_TIME_END']
@@ -60,7 +60,7 @@ class TimeUtils:
             lunch_time_start, lunch_time_end,
             dinner_time_start, dinner_time_end,
     ):
-        with open('./data/meal_time.json', 'w') as f:
+        with open('./db/meal_time.json', 'w') as f:
             meal_time_settings = {'BREAKFAST_TIME_START': breakfast_time_start,
                                   'BREAKFAST_TIME_END': breakfast_time_end, 'LUNCH_TIME_START': lunch_time_start,
                                   'LUNCH_TIME_END': lunch_time_end, 'DINNER_TIME_START': dinner_time_start,
