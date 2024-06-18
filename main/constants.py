@@ -38,11 +38,11 @@ DEVELOPMENT_NOT_COMPLETED_MESSAGE = \
 
 
 class Select(Enum):
-    SIGN_IN = 1
-    SIGN_UP = 2
-    EXIT_PROGRAM = 3
+    SIGN_IN = '1'
+    SIGN_UP = '2'
+    EXIT_PROGRAM = '3'
 
 
 class SelectManagerMode(Enum):
-    MEAL_TIME_SETTING = 1
-    ADD_RESTAURANT = 2
+    MEAL_TIME_SETTING = '1'
+    ADD_RESTAURANT = '2'

@@ -35,6 +35,12 @@
             "username": "sisii",
             "password": "222",
             "role": 1
+        },
+        {
+            "account_id": 7,
+            "username": "eieiei",
+            "password": "",
+            "role": 1
         }
     ]
 }
