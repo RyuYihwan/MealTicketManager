@@ -6,10 +6,11 @@ class Account:
     계정 데이터 클래스
     """
 
-    def __init__(self, account_id: str, username: str, password: str, role: int):
+    def __init__(self, account_id: str, username: str, password: str, money: int, role: int):
         self.account_id = account_id
         self.username = username
         self.password = password
+        self.money = money
         # Enum value 로 생성
         self.role = role
 
@@ -42,3 +43,7 @@ class AccountDataAccess:
             if dict_account['username'] == username:
                 account = Account(**dict_account)
                 return account
+
+    def get_account_money(self, account_id):
+        accounts = self.get_accounts()
+

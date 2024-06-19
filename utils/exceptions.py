@@ -1,4 +1,4 @@
-class AccountException(Exception):
+class UtilException(Exception):
     def __init__(self, msg):
         self.msg = msg
 

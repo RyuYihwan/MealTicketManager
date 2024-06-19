@@ -4,42 +4,35 @@
             "account_id": 1,
             "username": "user1",
             "password": "1234",
+            "money": 20000,
             "role": 1
         },
         {
             "account_id": 2,
             "username": "admin1",
             "password": "12345",
+            "money": 20000,
             "role": 0
         },
         {
             "account_id": 3,
             "username": "user2",
             "password": "1234",
+            "money": 20000,
             "role": 1
         },
         {
             "account_id": 4,
             "username": "user3",
             "password": "1234",
+            "money": 20000,
             "role": 1
         },
         {
             "account_id": 5,
             "username": "user4",
             "password": "1234",
-            "role": 1
-        },
-        {
-            "account_id": 6,
-            "username": "sisii",
-            "password": "222",
-            "role": 1
-        },
-        {
-            "account_id": 7,
-            "username": "eieiei",
-            "password": "",
+            "money": 20000,
             "role": 1
         }
     ]
