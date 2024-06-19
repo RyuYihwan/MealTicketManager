@@ -4,7 +4,7 @@
             "account_id": 1,
             "username": "user1",
             "password": "1234",
-            "money": 20000,
+            "money": 2000,
             "role": 1
         },
         {
@@ -32,6 +32,13 @@
             "account_id": 5,
             "username": "user4",
             "password": "1234",
+            "money": 20000,
+            "role": 1
+        },
+        {
+            "account_id": 6,
+            "username": "aaaa",
+            "password": "13",
             "money": 20000,
             "role": 1
         }

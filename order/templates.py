@@ -5,4 +5,4 @@ class OrderTemplate:
         return order_response
 
     def order_complete(self, new_order):
-        print(f'결제 금액은 {new_order.food_price} 입니다. 주문이 완료 되었습니다. 감사합니다.')
+        print(f'결제 금액은 {new_order.ordered_price} 입니다. 주문이 완료 되었습니다. 감사합니다.')

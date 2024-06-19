@@ -18,6 +18,6 @@ class MainTemplate:
     def input_change_time(self):
         print(INPUT_CHANGE_TIME_MESSAGE)
         return {
-            'start_time': input("변경할 시간의 시작 시간 입력: "),
-            'end_time': input("변경할 시간의 종료 시간 입력: ")
+            'start_time': input("변경할 식사 시간의 시작 시간 입력: "),
+            'end_time': input("변경할 식사 시간의 종료 시간 입력: ")
         }

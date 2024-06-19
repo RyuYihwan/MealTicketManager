@@ -35,6 +35,10 @@ class MainService:
                 # 로그인 계정 정보 유지
                 account = self.__account_view.sign_in()
 
+                # 계정이 예외로 인해 할당 되지 않으면 continue
+                if account is None:
+                    continue
+
                 # 로그인 된 계정을 확인 후 역할에 따라 다른 모드 실행
                 if account.role == Roles.MANAGER.value:
 
@@ -52,6 +56,10 @@ class MainService:
                     # 설정 시간과 현재 시간을 비교하여 시간대를 가져옴, 만약 운영시간이 아니라면 에러 메세지
                     meal_time = TimeUtils.get_meal_time_from_settings()
 
+                    # 설정 시간이 예외로 인해 할당 되지 않으면 continue
+                    if meal_time is None:
+                        continue
+
                     # 식당 선택
                     selected_restaurant_id = self.__restaurant_view.choose_restaurant(meal_time)
 
@@ -62,14 +70,14 @@ class MainService:
                     order_response = self.__order_view.check_order(selected_menu)
 
                     # 주문
-                    if OrderResponse.YES.value:
-                        self.__order_view.add_order(selected_menu.get('food_price'), selected_menu.get('food_name'),
+                    if order_response == OrderResponse.YES.value:
+                        self.__order_view.add_order(int(selected_menu.get('food_price')), selected_menu.get('food_name'),
                                                     account.account_id, selected_restaurant_id,
                                                     selected_menu.get('food_id'))
                     else:
                         self.__main_template.information_message(NOT_ORDER_RETURN_MAIN_MENU)
 
-            # 회원 가입 선택
+            # 회원 가입 선택2
             elif select == Select.SIGN_UP.value:
                 self.__account_view.sign_up()
 

@@ -46,4 +46,15 @@ class AccountDataAccess:
 
     def get_account_money(self, account_id):
         accounts = self.get_accounts()
+        for dict_account in accounts:
+            if dict_account['account_id'] == account_id:
+                return dict_account['money']
 
+    def set_account_money(self, account_id, money):
+        accounts = self.get_accounts()
+        for dict_account in accounts:
+            if dict_account['account_id'] == account_id:
+                dict_account['money'] = money
+
+        with open(self.data_path, 'w') as f:
+            json.dump({'account': accounts}, f, indent=4)

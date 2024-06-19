@@ -19,16 +19,16 @@ class RestaurantTemplate:
             print('메뉴가 제공 되는 가게 입니다. 시간 대에 맞는 메뉴가 제공 됩니다.')
             for menu in menus_by_meal_time:
                 print(
-                    f'{restaurant.get("restaurant_id")}-{menu.get("food_id")}. {menu.get("food_name")} 가격: {menu.get("food_price")}')
+                    f'{menu.get("food_id")}. {menu.get("food_name")} 가격: {menu.get("food_price")}')
 
             selected_menu_id = input('원하시는 메뉴의 번호를 입력해주세요: ')
 
-            return menus_by_meal_time[selected_menu_id]
+            return menus_by_meal_time[int(selected_menu_id) - 1]
 
         else:
             print('메뉴가 제공 되지 않는 가게 입니다. 다음 메뉴가 자동 선택 됩니다.')
             menu = menus_by_meal_time[0]
             print(
-                f'{restaurant.get("restaurant_id")}-{menu.get("food_id")}. {menu.get("food_name")} 가격: {menu.get("food_price")}')
+                f'{menu.get("food_id")}. {menu.get("food_name")} 가격: {menu.get("food_price")}')
 
             return menu
