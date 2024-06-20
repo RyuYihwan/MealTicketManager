@@ -19,19 +19,19 @@ class AppConfig:
         self.__initialize()
 
     def __initialize(self):
-        self.account_data_access = AccountDataAccess('db/account.json')
-        self.account_template = AccountTemplate()
-        self.account_view = AccountView(self.account_template, self.account_data_access)
+        self.__account_data_access = AccountDataAccess('db/account.json')
+        self.__account_template = AccountTemplate()
+        self.__account_view = AccountView(self.__account_template, self.__account_data_access)
 
-        self.restaurant_data_access = RestaurantDataAccess('db/restaurant.json')
-        self.restaurant_template = RestaurantTemplate()
-        self.restaurant_view = RestaurantView(self.restaurant_template, self.restaurant_data_access)
+        self.__restaurant_data_access = RestaurantDataAccess('db/restaurant.json')
+        self.__restaurant_template = RestaurantTemplate()
+        self.__restaurant_view = RestaurantView(self.__restaurant_template, self.__restaurant_data_access)
 
-        self.order_data_access = OrderDataAccess('db/order.json')
-        self.order_template = OrderTemplate()
-        self.order_view = OrderView(self.order_template, self.order_data_access, self.account_data_access)
+        self.__order_data_access = OrderDataAccess('db/order.json')
+        self.__order_template = OrderTemplate()
+        self.__order_view = OrderView(self.__order_template, self.__order_data_access, self.__account_data_access)
 
-        self.main_template = MainTemplate()
+        self.__main_template = MainTemplate()
 
     def get_main_service(self):
-        return MainService(self.main_template, self.account_view, self.restaurant_view, self.order_view)
+        return MainService(self.__main_template, self.__account_view, self.__restaurant_view, self.__order_view)
