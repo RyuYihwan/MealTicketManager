@@ -32,6 +32,7 @@ class AppConfig:
         self.__order_view = OrderView(self.__order_template, self.__order_data_access, self.__account_data_access)
 
         self.__main_template = MainTemplate()
+        self.__main_service = MainService(self.__main_template, self.__account_view, self.__restaurant_view, self.__order_view)
 
     def get_main_service(self):
-        return MainService(self.__main_template, self.__account_view, self.__restaurant_view, self.__order_view)
+        return self.__main_service
